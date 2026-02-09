@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+const { posts, basePath } = Astro.props as {
+  posts: CollectionEntry<any>[];
+  basePath: string;
+};
+---
+
+<section class="lyrics-list">
+  <ul>
+    {posts.map(post => (
+      <li>
+        <a href={`/${basePath}/${post.slug}`}>
+          {post.data.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .lyrics-list ul {
+    list-style: disc;
+    padding-left: 1em;
+    margin: 0;
+  }
+</style>

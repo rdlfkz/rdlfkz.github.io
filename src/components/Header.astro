@@ -1,0 +1,193 @@
+---
+import Link from "./Link.astro";
+
+const { navItems } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="inner">
+    <!-- 左：スペーサー -->
+    <div class="header-spacer"></div>
+    <!-- 中央：ロゴ -->
+    <div class="header-logo">
+      <a href="/" aria-label="rdlf home">
+        <img src="/images/rdlf_logo_only.svg" alt="rdlf logo" />
+      </a>
+    </div>
+
+    <!-- ハンバーガーメニュー -->
+    <details class="nav-details">
+      <summary class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+    </details>
+
+    <div class="nav-overlay">
+      <nav class="nav-menu">
+        <ul>
+          {navItems.map(item => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))}
+          <br />
+          <p><Link class="link" /></p>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+<style>
+  /* ===== Header ===== */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: var(--rdlf-black);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.site-header .inner {
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 左：スペーサー */
+.header-spacer {
+  width: 32px;
+  display: flex;
+}
+
+/* 中央ロゴ */
+.header-logo img {
+  height: 40px;
+  display: block;
+  position: relative;
+  z-index: 2000;
+}
+
+/* ハンバーガーボタン */
+
+.nav-toggle {
+  width: 32px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  z-index: 2000;
+}
+
+.nav-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.nav-toggle span {
+  height: 2px;
+  background: var(--fixed-white);
+  display: block;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* オーバーレイ */
+.nav-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: var(--rdlf-black);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  /* 初期状態（閉じ） */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* メニュー */
+
+.nav-menu {
+  z-index: 2000;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-menu ul {
+  color: var(--fixed-white);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  font-size: 1.5rem;
+  line-height: 4rem;
+  width: fit-content;
+  margin: auto;
+}
+
+/* 開いたときのアニメーション */
+
+.nav-details[open] .nav-toggle span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
+.nav-details[open] .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-details[open] .nav-toggle span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+/* open時 */
+body:has(.nav-details[open]) .site-header {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.nav-details[open] + .nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body:has(.nav-details[open]) {
+  overflow: hidden;
+}
+
+.link img {
+  border: var(--rdlf-black) 1px solid;
+}
+
+</style>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LyricsList from "../../components/LyricsList.astro";
+import { getCollection } from "astro:content";
+
+// lyrics コレクションを取得
+const lyrics = await getCollection("lyrics");
+
+// 日付の新しい順に並び替え
+const sortedLyrics = lyrics.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="Lyrics">
+  <section class="single-section">
+    <h1>Lyrics</h1>
+    <LyricsList posts={sortedLyrics} basePath="lyrics" />
+  </section>
+</BaseLayout>

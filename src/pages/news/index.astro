@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostList from "../../components/PostList.astro";
+import { getCollection } from "astro:content";
+
+// news コレクションを取得
+const news = await getCollection("news");
+
+// 日付の新しい順に並び替え
+const sortedNews = news.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="News">
+  <section class="single-section">
+    <h1>News</h1>
+    <PostList posts={sortedNews} basePath="news" />
+  </section>
+</BaseLayout>

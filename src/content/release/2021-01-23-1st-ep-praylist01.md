@@ -1,0 +1,25 @@
+---
+title: "1st EP \"praylist01\""
+date: 2021-01-23
+img: "/images/praylist01_web.jpg"
+tracks: 
+  - "iu"
+  - "strobo (from the bedroom ver)"
+  - "forest"
+  - "tadanaka"
+tunecore: "https://linkco.re/S8754DvS"
+apple: "https://music.apple.com/jp/album/praylist01-ep/1548265295"
+spotify: "https://open.spotify.com/intl-ja/album/7ftcJzyBCUIFhzzTM4coEo?si=Ohch4C-JTJWiPDZiYzBznA"
+---
+
+### [●OMOIDE LABEL BANDCAMP](https://omoidelabel.bandcamp.com/album/praylist01)
+
+<iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1190890365/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://omoidelabel.bandcamp.com/album/praylist01">praylist01 rudolf</a></iframe>
+
+### Trailer
+
+<iframe src="https://www.youtube.com/embed/erfbwKW0hVA?si=__1HxBSj5pB5Tbzc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### "iu" Lyric Video
+
+<iframe src="https://www.youtube.com/embed/vsjrfQ5nTdM?si=vtkhelhYyCgda16H" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

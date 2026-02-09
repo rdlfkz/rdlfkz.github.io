@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+const { posts, basePath } = Astro.props as {
+  posts: CollectionEntry<any>[];
+  basePath: string;
+};
+---
+
+<ul>
+  {posts.map(post => (
+    <li>
+      <a href={`/${basePath}/${post.slug}`}>
+        <time>{post.data.date.toISOString().slice(0, 10)}</time><br />
+        {post.data.title}
+      </a>
+    </li>
+  ))}
+</ul>

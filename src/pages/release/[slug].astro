@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const release = await getCollection("release");
+
+  return release.map(item => ({
+    params: { slug: item.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+// slug に一致する記事を取得
+const entry = await getEntry("release", slug);
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title}>
+  <article>
+    <h1>{entry.data.title}</h1>
+    <p><time>{entry.data.date.toISOString().slice(0, 10)}</time></p>
+    <center><a href={entry?.data.tunecore}><img src={entry.data.img} width="50%" alt={entry.data.title} /></a></center>
+    <br />
+    <ol>
+    {entry.data.tracks.map(track => (
+      <li>{track}</li>
+    ))}
+    </ol>
+    <br />
+    <a href={entry.data.apple}><i class="fa-brands fa-apple"></i>AppleMusic</a><br />
+    <a href={entry.data.spotify}><i class="fa-brands fa-spotify"></i>Spotify</a><br />
+    <a href={entry.data.tunecore}>■他配信リスト</a><br />
+    <br />
+    <Content />
+  </article>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ReleaseList from "../../components/ReleaseList.astro";
+import { getCollection } from "astro:content";
+
+// release コレクションを取得
+const release = await getCollection("release");
+
+// 日付の新しい順に並び替え
+const sortedRelease = release.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="Release">
+  <section class="single-section">
+    <h1>Release</h1>
+    <ReleaseList posts={sortedRelease} basePath="release" />
+  </section>
+</BaseLayout>

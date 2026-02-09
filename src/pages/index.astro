@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Link from "../components/Link.astro";
+import Section from "../components/Section.astro";
+import PostList from "../components/PostList.astro";
+import ReleaseList from "../components/ReleaseList.astro";
+import VideosList from "../components/VideosList.astro";
+import LyricsList from "../components/LyricsList.astro";
+import { getCollection } from "astro:content";
+
+const news = (await getCollection("news"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const release = (await getCollection("release"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const videos = (await getCollection("videos"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const lyrics = (await getCollection("lyrics"));
+
+const profile = (await getCollection("profile"))[0];
+---
+
+<BaseLayout title="Home">
+  <!-- Link -->
+  <Link class="top-links" />
+
+  <section class="home-posts">
+    <Section class="home-news" title="News" isViewMore={true}>
+    <PostList posts={news} basePath="news" />
+    </Section>
+
+    <Section class="home-release" title="Release">
+      <ReleaseList posts={release} basePath="release" />
+    </Section>
+  </section>
+
+  <Section title="Videos">
+    <VideosList posts={videos.slice(0, 3)} basePath="videos" />
+  </Section>
+
+  <section class="home-posts">
+    <Section class="home-lyrics" title="Lyrics">
+      <LyricsList posts={lyrics} basePath="lyrics" />
+    </Section>
+
+    <Section class="home-profile" title="Profile" isViewMore={true}>
+      <h3>{profile.data.name}</h3>
+      <ul><li>{profile.data.about}</li></ul>
+    </Section>
+  </section>
+</BaseLayout>
