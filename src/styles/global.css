@@ -173,6 +173,8 @@ iframe {
 
 img {
   border: var(--border) 1px solid;
+  margin: auto;
+  display: block;
 }
 
 /* ------------------------------

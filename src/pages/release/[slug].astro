@@ -20,7 +20,7 @@ const { Content } = await entry.render();
   <article>
     <h1>{entry.data.title}</h1>
     <p><time>{entry.data.date.toISOString().slice(0, 10)}</time></p>
-    <center><a href={entry?.data.tunecore}><img src={entry.data.img} width="50%" alt={entry.data.title} /></a></center>
+    <a href={entry?.data.tunecore}><img src={entry.data.img} width="50%" alt={entry.data.title} /></a>
     <br />
     <ol>
     {entry.data.tracks.map(track => (
