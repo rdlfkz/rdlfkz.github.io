@@ -195,6 +195,13 @@ article {
   max-width: 640px;
   margin: 0 auto;
 }
+.article-content .release-type {
+  color: var(--muted);
+}
+.article-content .date {
+  color: var(--muted);
+  white-space: nowrap;
+}
 .article-content a {
   text-decoration: underline;
 }

@@ -17,9 +17,10 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout title={entry.data.title}>
-  <article>
+  <article class="article-content">
+    <span class="release-type">{entry.data.type}</span>
     <h1>{entry.data.title}</h1>
-    <p><time>{entry.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time></p>
+    <p><time class="date">{entry.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time></p>
     <a href={entry.data.tunecore}><img src={entry.data.img} width="50%" alt={entry.data.title} /></a>
     <br />
     <ol>
@@ -35,3 +36,9 @@ const { Content } = await entry.render();
     <Content />
   </article>
 </BaseLayout>
+
+<style>
+  h1  {
+    margin-block-start: 0;
+  }
+</style>
