@@ -1,6 +1,6 @@
 ---
 title: "コンピレーションアルバム \"Track Cruising.\" に \"iu\" で参加"
-date: 2020-03-20
+date: 2020-02-15
 ---
 
 コンピレーションアルバム "Track Cruising." は、"in the room" と "on the floor" の2枚組アルバムです。
