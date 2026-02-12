@@ -19,8 +19,8 @@ const { Content } = await entry.render();
 <BaseLayout title={entry.data.title}>
   <article>
     <h1>{entry.data.title}</h1>
-    <p><time>{entry.data.date.toISOString().slice(0, 10)}</time></p>
-    <a href={entry?.data.tunecore}><img src={entry.data.img} width="50%" alt={entry.data.title} /></a>
+    <p><time>{entry.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time></p>
+    <a href={entry.data.tunecore}><img src={entry.data.img} width="50%" alt={entry.data.title} /></a>
     <br />
     <ol>
     {entry.data.tracks.map(track => (
@@ -28,9 +28,9 @@ const { Content } = await entry.render();
     ))}
     </ol>
     <br />
-    <a href={entry.data.apple}><i class="fa-brands fa-apple"></i>AppleMusic</a><br />
-    <a href={entry.data.spotify}><i class="fa-brands fa-spotify"></i>Spotify</a><br />
-    <a href={entry.data.tunecore}>■他配信リスト</a><br />
+    {entry.data.apple && (<a href={entry.data.apple}><i class="fa-brands fa-apple"></i>AppleMusic</a><br />)}
+    {entry.data.spotify && (<a href={entry.data.spotify}><i class="fa-brands fa-spotify"></i>Spotify</a><br />)}
+    {entry.data.tunecore && (<a href={entry.data.tunecore}>■他配信リスト</a><br />)}
     <br />
     <Content />
   </article>

@@ -1,7 +1,8 @@
 ---
-title: "iu"
+title: "iu (Live ver)"
 lyrics: "rudolf"
-index: 140
+index: 141
+withChord: true
 ---
 自分の事ばかり
 他人と比べてばかり

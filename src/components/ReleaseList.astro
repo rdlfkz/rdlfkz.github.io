@@ -13,11 +13,14 @@ const { posts, basePath } = Astro.props as {
     {posts.map(post => (
       <li>
         <a href={`/${basePath}/${post.slug}`}>
-        <img src={post.data.img} width="100" alt={post.data.title} /><br />
-        </a>
-        <a href={`/${basePath}/${post.slug}`}>
-          <h3>{post.data.title}</h3>
-          <time>{post.data.date.toISOString().slice(0, 10)}</time>
+          <span><img src={post.data.img} width="100" alt={post.data.title} /><br /></span>
+          {/* </a>
+          <a href={`/${basePath}/${post.slug}`}> */}
+          <div class="meta">
+            <span class="release-type">{post.data.type}</span>
+            <h3>{post.data.title}</h3>
+            <time>{post.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time>
+          </div>
         </a>
       </li>
     ))}
@@ -25,7 +28,24 @@ const { posts, basePath } = Astro.props as {
 </section>
 
 <style>
-.release-list li {
+  .release-list {
+    margin-bottom: 0rem;
+  }
+  .release-list li {
+      display: flex;
+  }
+  .release-list a {
     display: flex;
-}
+    line-height: 0.5rem;
+    gap: 1rem;
+  }
+  .release-list .meta {
+    display: flex-start;
+    flex-direction: column;
+    padding-top: 0.4rem;
+  }
+  .release-list .release-type {
+    color: var(--muted);
+    padding-top: 5rem;
+  }
 </style>

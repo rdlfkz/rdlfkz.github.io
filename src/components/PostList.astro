@@ -11,7 +11,7 @@ const { posts, basePath } = Astro.props as {
   {posts.map(post => (
     <li>
       <a href={`/${basePath}/${post.slug}`}>
-        <time>{post.data.date.toISOString().slice(0, 10)}</time><br />
+        <time>{post.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time><br />
         {post.data.title}
       </a>
     </li>

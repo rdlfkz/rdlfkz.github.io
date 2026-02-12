@@ -11,8 +11,9 @@ const { posts, basePath } = Astro.props as {
   <ul>
     {posts.map(post => (
       <li>
-        <a href={`/${basePath}/${post.slug}`}>
+        <a href={`/${basePath}/${post.id.substring(0, post.id.lastIndexOf('.'))}`}>
           {post.data.title}
+          {post.data.withChord && <span class="chord">[Chord]</span>}
         </a>
       </li>
     ))}
@@ -24,5 +25,10 @@ const { posts, basePath } = Astro.props as {
     list-style: disc;
     padding-left: 1em;
     margin: 0;
+  }
+
+  .chord {
+    font-size: 0.6rem;
+    color: var(--fixed-blue);
   }
 </style>

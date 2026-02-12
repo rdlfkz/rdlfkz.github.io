@@ -17,9 +17,11 @@ const release = (await getCollection("release"))
   .slice(0, 3);
 
 const videos = (await getCollection("videos"))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => b.data.index - a.data.index)
+  .slice(0, 3);
 
-const lyrics = (await getCollection("lyrics"));
+const lyrics = (await getCollection("lyrics"))
+  .sort((a, b) => b.data.index - a.data.index);
 
 const profile = (await getCollection("profile"))[0];
 ---
@@ -33,13 +35,13 @@ const profile = (await getCollection("profile"))[0];
     <PostList posts={news} basePath="news" />
     </Section>
 
-    <Section class="home-release" title="Release">
+    <Section class="home-release" title="Release" isViewMore={true}>
       <ReleaseList posts={release} basePath="release" />
     </Section>
   </section>
 
-  <Section title="Videos">
-    <VideosList posts={videos.slice(0, 3)} basePath="videos" />
+  <Section title="Videos" isViewMore={true}>
+    <VideosList posts={videos} basePath="videos" />
   </Section>
 
   <section class="home-posts">
@@ -48,8 +50,17 @@ const profile = (await getCollection("profile"))[0];
     </Section>
 
     <Section class="home-profile" title="Profile" isViewMore={true}>
-      <h3>{profile.data.name}</h3>
-      <ul><li>{profile.data.about}</li></ul>
+      <ul>
+        <li>
+          <ul>
+            <h3>{profile.data.name}</h3>
+            <li>{profile.data.about}</li>
+          </ul>
+          <a href={`/profile`}>
+          <img src="/images/avatar.jpg" width="100" alt="icon image" /><br />
+          </a>
+        </li>
+      </ul>
     </Section>
   </section>
 </BaseLayout>

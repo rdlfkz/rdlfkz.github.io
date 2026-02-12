@@ -1,5 +1,6 @@
 ---
-title: "1st Single \"Torch\""
+title: "Torch"
+type: "Single"
 date: 2023-10-28
 img: "/images/Torch_Jacket_web.jpg"
 tracks: 

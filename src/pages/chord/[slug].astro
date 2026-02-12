@@ -3,39 +3,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, getEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const lyrics = await getCollection("lyrics");
+  const chord = await getCollection("chord");
 
-  return lyrics.map(item => ({
+  return chord.map(item => ({
     params: { slug: item.id.substring(0, item.id.lastIndexOf('.')) },
   }));
 }
 
 const { slug } = Astro.params;
 // slug に一致する記事を取得
-const entry = await getEntry("lyrics", slug);
+const entry = await getEntry("chord", slug);
 const { Content } = await entry.render();
-let lines = entry.body.split("\n");;
-
-function normalizeEmptyLines(lines: string[]): string[] {
-  const isEmpty = (line: string) => line.trim() === "";
-
-  let start = 0;
-  let end = lines.length - 1;
-
-  while (start <= end && isEmpty(lines[start])) start++;
-  while (end >= start && isEmpty(lines[end])) end--;
-
-  const result: string[] = [];
-  let prevEmpty = false;
-
-  for (let i = start; i <= end; i++) {
-    result.push(lines[i]);
-  }
-
-  return result;
-}
-
-const normalizedLines = normalizeEmptyLines(lines);
+const lines = entry.body.split("\n");
+const evenLines = lines.filter((_, index) => index % 2 === 1);
+const oddLines = lines.filter((_, index) => index % 2 === 0);
+const zipped = oddLines.map((line, index) => ({odd: line, even: evenLines[index]}));
 ---
 
 <BaseLayout title={entry.data.title}>
@@ -48,21 +30,20 @@ const normalizedLines = normalizeEmptyLines(lines);
   <article>
     <h1>{entry.data.title}</h1>
     <p>Lyrics: {entry.data.lyrics}</p>
-    {entry.data.withChord && <p><a class="chord" href={`/chord/${slug}`}>[Chord]</a></p>}
+    {entry.data.capo > 0 && <p>Capo: {entry.data.capo}</p>}
     <br />
-    {normalizedLines.map(line => (
+    {zipped.map(({odd, even}) => (
+      <div class="odd">
+        <span>{odd}</span>
+      </div>
       <div class="even">
-        <span>{line}</span>
+        <span>{even}</span>
       </div>
     ))}
   </article>
 </BaseLayout>
 
 <style>
-  .chord {
-    text-decoration: underline;
-    color: var(--fixed-blue);
-  }
   .line {
     white-space: pre-wrap;
     line-height: 1.6;
@@ -85,7 +66,7 @@ const normalizedLines = normalizeEmptyLines(lines);
   }
 
   .even {
-    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: 'Noto Sans JP', sans-serif;
     font-size: 1.0em;
     align-items: flex-start;
   }

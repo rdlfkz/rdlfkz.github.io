@@ -8,6 +8,7 @@
   --border: #ddd;
   --rdlf-black: rgba(25, 25, 25, 0.9);
   --fixed-white: #ddd;
+  --fixed-blue: #3B82F6
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,6 +91,15 @@ section {
   .home-profile {
     margin-bottom: 0;
   }
+}
+
+.home-profile li {
+    display: flex;
+}
+
+.home-profile a {
+    display: block;
+    line-height: 0rem;
 }
 
 /* ------------------------------
@@ -184,4 +194,11 @@ img {
 article {
   max-width: 640px;
   margin: 0 auto;
+}
+.article-content a {
+  text-decoration: underline;
+}
+.article-content iframe {
+  margin: auto;
+  display: block;
 }

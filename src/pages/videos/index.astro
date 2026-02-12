@@ -8,7 +8,7 @@ const videos = await getCollection("videos");
 
 // 日付の新しい順に並び替え
 const sortedVideos = videos.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  (a, b) => b.data.index - a.data.index
 );
 ---
 

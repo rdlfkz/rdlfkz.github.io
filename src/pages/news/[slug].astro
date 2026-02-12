@@ -17,9 +17,10 @@ const { Content } = await entry.render();
 ---
 
 <BaseLayout title={entry.data.title}>
-  <article>
+  <article class="article-content">
     <h1>{entry.data.title}</h1>
-    <p><time>{entry.data.date.toISOString().slice(0, 10)}</time></p>
+    <p><time>{entry.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time></p>
     <Content />
   </article>
 </BaseLayout>
+
