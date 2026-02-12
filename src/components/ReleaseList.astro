@@ -1,0 +1,51 @@
+---
+import "../styles/global.css"
+import type { CollectionEntry } from "astro:content";
+
+const { posts, basePath } = Astro.props as {
+  posts: CollectionEntry<any>[];
+  basePath: string;
+};
+---
+
+<section class="release-list">
+  <ul>
+    {posts.map(post => (
+      <li>
+        <a href={`/${basePath}/${post.slug}`}>
+          <span><img src={post.data.img} width="100" alt={post.data.title} /><br /></span>
+          {/* </a>
+          <a href={`/${basePath}/${post.slug}`}> */}
+          <div class="meta">
+            <span class="release-type">{post.data.type}</span>
+            <h3>{post.data.title}</h3>
+            <time>{post.data.date.toLocaleDateString("ja-JP", { year: "numeric", month: "2-digit", day: "2-digit", })}</time>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .release-list {
+    margin-bottom: 0rem;
+  }
+  .release-list li {
+      display: flex;
+  }
+  .release-list a {
+    display: flex;
+    line-height: 0.5rem;
+    gap: 1rem;
+  }
+  .release-list .meta {
+    display: flex-start;
+    flex-direction: column;
+    padding-top: 0.4rem;
+  }
+  .release-list .release-type {
+    color: var(--muted);
+    padding-top: 5rem;
+  }
+</style>

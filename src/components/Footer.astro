@@ -1,0 +1,61 @@
+---
+import Link from "../components/Link.astro";
+
+const { navItems } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="inner">
+    <nav class="footer-nav">
+      <ul>
+        {navItems.map(link => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <p><Link /></p>
+
+    <p class="copyright">
+      © rdlfkz
+    </p>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  /* background-color: #222; */
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+.site-footer .inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  text-align: center;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+.site-footer .copyright {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+</style>

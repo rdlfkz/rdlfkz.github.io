@@ -1,0 +1,88 @@
+---
+const {class: className} = Astro.props || { class: "" };
+const links = [
+  {
+    href: "https://www.youtube.com/@rdlfkz",
+    label: "YouTube",
+    class: "fa-brands fa-youtube"
+  },
+  {
+    href: "https://soundcloud.com/rdlfkz",
+    label: "SoundCloud",
+    class: "fa-brands fa-soundcloud"
+  },
+  {
+    href: "https://music.apple.com/jp/artist/rudolf/1530486958",
+    label: "Apple Music",
+    class: "fa-brands fa-apple"
+  },
+  {
+    href: "https://open.spotify.com/intl-ja/artist/0ZEutI3j4pqzwmUxE926Nl?si=SIWEwW_LQ3OH3iQ6hByR6g",
+    label: "Spotify",
+    class: "fa-brands fa-spotify"
+  },
+  {
+    href: "https://www.tunecore.co.jp/artists/rdlfkz",
+    label: "TuneCore",
+    class: "fa-solid fa-music"
+  },
+  {
+    href: "https://rdlfkz.bandcamp.com/",
+    label: "bandcamp",
+    class: "fa-brands fa-bandcamp"
+  },
+  {
+    href: "https://www.instagram.com/rdlfkz",
+    label: "Instagram",
+    class: "fa-brands fa-instagram"
+  },
+  {
+    href: "https://x.com/rdlfkz",
+    label: "X",
+    class: "fa-brands fa-x-twitter"
+  },
+];
+---
+<div class={className}>
+  {links.map(item => (
+      <a href={item.href} aria-label={item.label}>
+          <i class={item.class}></i>
+      </a>
+  ))}
+</div>
+<div class="dthm">
+  <a class="dthm_link" href="https://detohma.com/">
+    My band, 
+    <img class="dthm_logo" src="/images/dthm_minimum.svg" alt="detohma logo" />
+  </a>
+</div>
+
+<style>
+  a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 6px;
+    font-size: 1.5rem;
+  }
+
+  a:hover {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .dthm {
+    text-align: center;
+  }
+
+  .dthm_link {
+    font-size: 0.9rem;
+    line-height: 3rem;
+  }
+
+  .dthm_logo {
+    height: 1.3rem;
+    vertical-align: middle;
+    border: #666 1px solid;
+    display: inline-block;
+  }
+</style>

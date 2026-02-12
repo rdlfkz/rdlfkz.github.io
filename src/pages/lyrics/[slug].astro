@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const lyrics = await getCollection("lyrics");
+
+  return lyrics.map(item => ({
+    params: { slug: item.id.substring(0, item.id.lastIndexOf('.')) },
+  }));
+}
+
+const { slug } = Astro.params;
+// slug に一致する記事を取得
+const entry = await getEntry("lyrics", slug);
+const { Content } = await entry.render();
+let lines = entry.body.split("\n");;
+
+function normalizeEmptyLines(lines: string[]): string[] {
+  const isEmpty = (line: string) => line.trim() === "";
+
+  let start = 0;
+  let end = lines.length - 1;
+
+  while (start <= end && isEmpty(lines[start])) start++;
+  while (end >= start && isEmpty(lines[end])) end--;
+
+  const result: string[] = [];
+  let prevEmpty = false;
+
+  for (let i = start; i <= end; i++) {
+    result.push(lines[i]);
+  }
+
+  return result;
+}
+
+const normalizedLines = normalizeEmptyLines(lines);
+---
+
+<BaseLayout title={entry.data.title}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <article>
+    <h1>{entry.data.title}</h1>
+    <p>Lyrics: {entry.data.lyrics}</p>
+    {entry.data.withChord && <p><a class="chord" href={`/chord/${slug}`}>[Chord]</a></p>}
+    <br />
+    {normalizedLines.map(line => (
+      <div class="even">
+        <span>{line}</span>
+      </div>
+    ))}
+  </article>
+</BaseLayout>
+
+<style>
+  .chord {
+    text-decoration: underline;
+    color: var(--fixed-blue);
+  }
+  .line {
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+
+  .odd,
+  .even {
+    white-space: pre-wrap;
+    font-optical-sizing: none;
+    display: flex;
+    height: 1.6rem;
+    line-height: 1rem;
+  }
+
+  .odd {
+    font-family: 'Inconsolata', monospace;
+    font-size: 1.2em;
+    align-items: flex-end;
+    color: var(--fixed-blue);
+  }
+
+  .even {
+    /* font-family: 'Noto Sans JP', sans-serif; */
+    font-size: 1.0em;
+    align-items: flex-start;
+  }
+</style>

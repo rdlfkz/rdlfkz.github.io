@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import VideosList from "../../components/VideosList.astro";
+import { getCollection } from "astro:content";
+
+// videos コレクションを取得
+const videos = await getCollection("videos");
+
+// 日付の新しい順に並び替え
+const sortedVideos = videos.sort(
+  (a, b) => b.data.index - a.data.index
+);
+---
+
+<BaseLayout title="Videos">
+  <section class="single-section">
+    <h1>Videos</h1>
+    <VideosList posts={sortedVideos} basePath="videos" />
+  </section>
+</BaseLayout>

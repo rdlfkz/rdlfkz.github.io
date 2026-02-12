@@ -1,0 +1,19 @@
+---
+const {class: className} = Astro.props || { class: "" };
+const { title } = Astro.props;
+const { isViewMore } = Astro.props || { isViewMore: false };
+---
+
+<section class={className}>
+  <h2>
+    <a href={`/${title.toLowerCase()}`}>  
+      {title} <i class="fa-solid fa-angle-right"></i>
+    </a>
+  </h2>
+  <slot />
+  {isViewMore && (
+    <a href={`/${title.toLowerCase()}`}>  
+      more...
+    </a>
+  )}
+</section>
