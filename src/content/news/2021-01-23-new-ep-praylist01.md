@@ -5,7 +5,7 @@ date: 2021-01-23
 
 <img src="/images/praylist01_web.jpg" width="50%"><br />
 
-## 2021-01-22 20:00に OMOIDE LABEL よりリリース。
+## 2021/01/22 20:00に OMOIDE LABEL よりリリース。
 
 ### [●OMOIDE LABEL BANDCAMP](https://omoidelabel.bandcamp.com/album/praylist01)
 
