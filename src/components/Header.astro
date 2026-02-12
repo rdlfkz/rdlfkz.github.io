@@ -131,10 +131,10 @@ const { navItems } = Astro.props;
 .nav-menu {
   z-index: 2000;
   position: fixed;
-  top: 0px;
+  top: 72px;
   left: 0px;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 72px);
   z-index: 1000;
 
   flex-direction: column;
@@ -148,6 +148,8 @@ const { navItems } = Astro.props;
   list-style: none;
   padding: 0;
   margin: 0;
+  
+  overflow-y: auto;
 }
 
 .nav-menu li {
