@@ -1,9 +1,10 @@
 ---
-title: "Single \"forest / tadanaka\" をbandcampにて公開"
+title: "Single \"forest / tadanaka\" をbandcampにてリリース"
 date: 2019-07-31
 ---
 
-2曲入り作品、"forest / tadanaka" を、bandcamp, SoundCloudにて公開しました。
+2曲入りシングル、"forest / tadanaka" を、bandcampにてリリースしました。
+同時にSoundCloudでも公開しております。
 
 <iframe style="border: 0; width: 350px; height: 470px;" src="https://bandcamp.com/EmbeddedPlayer/album=1764658427/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://rdlfkz.bandcamp.com/album/forest-tadanaka">forest / tadanaka by rudolf</a></iframe>
 
