@@ -12,3 +12,5 @@ date: 2026-02-12
 これまでの間、私の作品の購入を検討いただいていた皆様、大変申し訳ありませんでした。
 
 今後とも、rudolfのbandcampをどうぞよろしくお願いいたします。
+
+[●bandcamp](https://rdlfkz.bandcamp.com/)
