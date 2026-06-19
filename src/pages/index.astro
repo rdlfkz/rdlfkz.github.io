@@ -18,7 +18,7 @@ const release = (await getCollection("release"))
 
 const videos = (await getCollection("videos"))
   .sort((a, b) => b.data.index - a.data.index)
-  .slice(0, 3);
+  .slice(0, 4);
 
 const lyrics = (await getCollection("lyrics"))
   .sort((a, b) => b.data.index - a.data.index);
