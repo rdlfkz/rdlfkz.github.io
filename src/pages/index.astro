@@ -10,7 +10,7 @@ import { getCollection } from "astro:content";
 
 const news = (await getCollection("news"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+  .slice(0, 4);
 
 const release = (await getCollection("release"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -18,7 +18,7 @@ const release = (await getCollection("release"))
 
 const videos = (await getCollection("videos"))
   .sort((a, b) => b.data.index - a.data.index)
-  .slice(0, 4);
+  .slice(0, 5);
 
 const lyrics = (await getCollection("lyrics"))
   .sort((a, b) => b.data.index - a.data.index);
