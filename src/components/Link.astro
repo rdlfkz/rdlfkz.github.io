@@ -7,9 +7,9 @@ const links = [
     class: "fa-brands fa-youtube"
   },
   {
-    href: "https://soundcloud.com/rdlfkz",
-    label: "SoundCloud",
-    class: "fa-brands fa-soundcloud"
+    href: "https://www.nicovideo.jp/series/578048?ref=garage_share_other",
+    label: "niconico",
+    class: "/images/niconico_logo_icon_248372.svg"
   },
   {
     href: "https://music.apple.com/jp/artist/rudolf/1530486958",
@@ -25,6 +25,16 @@ const links = [
     href: "https://www.tunecore.co.jp/artists/rdlfkz",
     label: "TuneCore",
     class: "fa-solid fa-music"
+  },
+  {
+    href: "",
+    label: "br",
+    class: "br"
+  },
+  {
+    href: "https://soundcloud.com/rdlfkz",
+    label: "SoundCloud",
+    class: "fa-brands fa-soundcloud"
   },
   {
     href: "https://rdlfkz.bandcamp.com/",
@@ -45,9 +55,20 @@ const links = [
 ---
 <div class={className}>
   {links.map(item => (
+    item.class === "br" ? (
+      <br class="mobile-break" />
+    ) : (
       <a href={item.href} aria-label={item.label}>
+        {item.class.startsWith("fa") ? (
           <i class={item.class}></i>
+          ) : (
+            <span
+              class="icon"
+              style={`--icon: url('${item.class}')`}
+            ></span>
+          )}
       </a>
+    )
   ))}
 </div>
 <div class="dthm">
@@ -68,6 +89,27 @@ const links = [
   a:hover {
     color: var(--muted);
     text-decoration: none;
+  }
+
+  .mobile-break {
+    display: none;
+  }
+
+  @media (max-width: 420px) {
+    .mobile-break {
+      display: block;
+      flex-basis: 100%;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+
+    background-color: currentColor;
+    mask: var(--icon) center / contain no-repeat;
+    -webkit-mask: var(--icon) center / contain no-repeat;
   }
 
   .dthm {
